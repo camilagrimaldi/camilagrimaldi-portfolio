@@ -1,0 +1,209 @@
+/* ============================================================================
+   CAMILA GRIMALDI — DESIGN SYSTEM
+   colors_and_type.css — foundational + semantic tokens
+   ----------------------------------------------------------------------------
+   Sober, editorial, image-led. Warm paper ground, near-black warm ink,
+   hairline rules, no shadows, near-zero radius. Color is carried by the
+   photography; the UI itself is almost entirely achromatic.
+
+   Typefaces (Google Fonts — see /fonts/README for licensing & substitution):
+     Display : Spectral  — refined transitional serif, elegant at large sizes
+     UI/Body : Archivo   — neutral grotesque by Omnibus-Type (Buenos Aires)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Archivo:wght@400;500;600&display=swap');
+
+:root {
+  /* ---- Type families ---------------------------------------------------- */
+  --font-display: 'Spectral', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Archivo', ui-monospace, 'SF Mono', Menlo, monospace; /* metadata uses Archivo, tracked */
+
+  /* ---- Color — warm neutral ground -------------------------------------- */
+  --paper:    oklch(0.972 0.004 85);   /* ~#F7F5F1  page background           */
+  --paper-2:  oklch(0.945 0.006 82);   /* ~#EDEAE3  panels / alt sections     */
+  --paper-3:  oklch(0.912 0.008 78);   /* ~#E2DDD4  image placeholder field   */
+  --paper-4:  oklch(0.872 0.009 76);   /* ~#D2CCC1  deeper plate / hover      */
+
+  --ink:      oklch(0.255 0.006 70);   /* ~#2A2723  primary text / wordmark   */
+  --ink-2:    oklch(0.440 0.006 72);   /* ~#5C5751  secondary text            */
+  --ink-3:    oklch(0.595 0.005 75);   /* ~#86817A  captions / metadata mute  */
+  --ink-4:    oklch(0.720 0.004 78);   /* ~#ADA9A2  faint labels / disabled   */
+
+  --hairline:        oklch(0.865 0.005 80); /* ~#DAD6CF  default rules         */
+  --hairline-strong: oklch(0.780 0.006 78); /* ~#BEB9B1  emphasized rules      */
+
+  --accent:    oklch(0.560 0.085 47);  /* ~#9C5B3F  muted clay — used rarely  */
+  --accent-2:  oklch(0.640 0.072 52);  /* ~#B27457  lighter clay              */
+
+  --on-ink:   oklch(0.972 0.004 85);   /* text on dark/ink surfaces           */
+  --white:    #ffffff;
+
+  /* Semantic roles */
+  --bg:          var(--paper);
+  --bg-alt:      var(--paper-2);
+  --surface:     var(--paper);
+  --text:        var(--ink);
+  --text-soft:   var(--ink-2);
+  --text-mute:   var(--ink-3);
+  --border:      var(--hairline);
+  --link:        var(--ink);
+
+  /* ---- Spacing scale (8px base) ----------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --space-11: 160px;
+  --space-12: 220px;
+
+  /* ---- Layout ----------------------------------------------------------- */
+  --max-w: 1440px;
+  --max-w-text: 660px;          /* measure for running prose */
+  --gutter: clamp(20px, 4.5vw, 64px); /* @kind spacing */
+
+  /* ---- Radius — architecture is crisp; near-zero ------------------------ */
+  --r-0: 0px;
+  --r-sm: 2px;
+
+  /* ---- Borders ---------------------------------------------------------- */
+  --border-hairline: 1px solid var(--hairline);
+  --border-strong: 1px solid var(--hairline-strong);
+  --border-ink: 1px solid var(--ink);
+
+  /* ---- Elevation — intentionally flat ----------------------------------- */
+  /* The system uses NO drop shadows. Separation is achieved with hairline
+     rules and tonal panels. A single, barely-there shadow exists only for
+     transient overlays (menus, lightbox). */
+  --shadow-none: none;
+  --shadow-overlay: 0 1px 0 var(--hairline), 0 24px 60px -32px oklch(0.255 0.01 70 / 0.28);
+
+  /* ---- Motion — slow, restrained; fades not bounces --------------------- */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --ease-in-out: cubic-bezier(0.45, 0, 0.2, 1); /* @kind other */
+  --dur-ui: 0.22s; /* @kind other */       /* hovers, small state changes */
+  --dur-reveal: 0.7s; /* @kind other */    /* image reveals, entrance fades */
+
+  /* ---- Type scale (semantic) -------------------------------------------- */
+  /* Display — serif, light, tight. Used for the name and large statements.  */
+  --display-size: clamp(40px, 7vw, 92px);
+  --display-line: 1.02; /* @kind font */
+  --display-weight: 300; /* @kind font */
+  --display-spacing: -0.015em;
+
+  /* Project / section titles */
+  --h1-size: clamp(30px, 4.2vw, 52px);
+  --h1-line: 1.06; /* @kind font */
+  --h2-size: clamp(24px, 2.6vw, 34px);
+  --h2-line: 1.12; /* @kind font */
+  --h3-size: 20px;
+  --h3-line: 1.2; /* @kind font */
+
+  /* Body */
+  --body-lg-size: 19px;   --body-lg-line: 1.6; /* @kind font */
+  --body-size: 16px;      --body-line: 1.62; /* @kind font */
+  --small-size: 14px;     --small-line: 1.55; /* @kind font */
+
+  /* Caption / metadata — small, tracked grotesque (architectural plate labels) */
+  --caption-size: 13px;   --caption-line: 1.45; /* @kind font */
+  --label-size: 11.5px;   --label-spacing: 0.16em;  /* UPPERCASE labels */
+}
+
+/* ============================================================================
+   SEMANTIC TYPE CLASSES
+   ========================================================================== */
+
+.t-display {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: var(--display-size);
+  line-height: var(--display-line);
+  letter-spacing: var(--display-spacing);
+  color: var(--ink);
+}
+
+.t-h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--h1-size);
+  line-height: var(--h1-line);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.t-h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--h2-size);
+  line-height: var(--h2-line);
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.t-h3 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--h3-size);
+  line-height: var(--h3-line);
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+.t-body-lg {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--body-lg-size);
+  line-height: var(--body-lg-line);
+  color: var(--ink-2);
+}
+
+.t-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  color: var(--ink-2);
+}
+
+.t-small {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--small-size);
+  line-height: var(--small-line);
+  color: var(--ink-2);
+}
+
+.t-caption {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--caption-size);
+  line-height: var(--caption-line);
+  color: var(--ink-3);
+}
+
+/* Tracked uppercase label — the workhorse for nav, metadata keys, plate tags */
+.t-label {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--label-size);
+  line-height: 1.2;
+  letter-spacing: var(--label-spacing);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ============================================================================
+   ELEMENT DEFAULTS (opt-in: apply to a scoped .prose or :root as desired)
+   ========================================================================== */
+.prose h1 { font: 300 var(--h1-size)/var(--h1-line) var(--font-display); letter-spacing: -0.01em; color: var(--ink); }
+.prose h2 { font: 400 var(--h2-size)/var(--h2-line) var(--font-display); color: var(--ink); }
+.prose h3 { font: 500 var(--h3-size)/var(--h3-line) var(--font-sans); color: var(--ink); }
+.prose p  { font: 400 var(--body-size)/var(--body-line) var(--font-sans); color: var(--ink-2); max-width: var(--max-w-text); }
+.prose a  { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--hairline-strong); }
+.prose a:hover { border-color: var(--ink); }
